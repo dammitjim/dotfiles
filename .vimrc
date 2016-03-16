@@ -19,12 +19,14 @@ NeoBundle 'tpope/vim-sensible'
 " Language
 NeoBundle 'fatih/vim-go'
 NeoBundle 'davidhalter/jedi-vim'
+NeoBundle 'chase/vim-ansible-yaml'
 
 " Utility
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'ctrlpvim/ctrlp.vim'
 NeoBundle 'majutsushi/tagbar'
 NeoBundle 'scrooloose/syntastic'
+NeoBundle 'scrooloose/nerdcommenter'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'tpope/vim-fugitive'
 
@@ -42,10 +44,13 @@ NeoBundleCheck
 
 syntax on
 set encoding=utf-8
-set background=dark
+set background=light
 colorscheme solarized
 
 let mapleader = ","
+
+" Toggle light/dark background
+map <Leader>bg :let &background = ( &background == "dark"? "light" : "dark" )<CR>
 
 " Jumping around split panes
 nnoremap <C-J> <C-W><C-J>
@@ -96,7 +101,6 @@ set autoread
 " Scroll offset
 set so=7
 
-
 " PLUGIN CONFIG
 
 " Ctrlp
@@ -105,12 +109,14 @@ nnoremap <leader>p :CtrlP<CR>
 " NERDTree
 let NERDTreeIgnore=['\~$', '\.swp$', '\.DS_Store$', '\.\.$', '\.$', '\~$']
 let NerdTreeMinimalUi=1
+let NERDTreeShowHidden=1
 
-nnoremap <leader>n :NERDTreeToggle<CR>
+nnoremap <leader>\ :NERDTreeToggle<CR>
 
 " Airline
 let g:airline_powerline_fonts = 1
 let g:airline_section_y = '%{strftime("%c")}'
+let g:airline#extensions#syntastic#enabled = 1
 
 " Syntastic
 set statusline+=%#warningmsg#
@@ -118,11 +124,12 @@ set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
+let g:syntastic_auto_loc_list = 3
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 
-" let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+let g:syntastic_mode_map = { 'mode': 'active' }
 " Enable this if vim starts lagging on save
 " let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
 
