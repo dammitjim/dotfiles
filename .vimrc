@@ -3,49 +3,70 @@ if &compatible
         set nocompatible               " Be iMproved
 endif
 
-set runtimepath+=/Users/jim/.vim/bundle/neobundle.vim/
-call neobundle#begin(expand('~/.vim/bundle'))
-
-NeoBundleFetch 'Shougo/neobundle.vim'
+call plug#begin('~/.vim/plugged')
 
 " Editor
-NeoBundle 'altercation/vim-colors-solarized'
-NeoBundle 'vim-airline/vim-airline'
-NeoBundle 'vim-airline/vim-airline-themes'
+Plug 'tpope/vim-sensible'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'Shougo/deoplete.nvim'
+Plug 'zchee/deoplete-go'
 
-" Config
-NeoBundle 'tpope/vim-sensible'
+" Themes
+Plug 'w0ng/vim-hybrid'
+Plug 'jdkanani/vim-material-theme'
+Plug 'morhetz/gruvbox'
+Plug 'mhartington/oceanic-next'
+Plug 'altercation/vim-colors-solarized'
+Plug 'chriskempson/base16-vim'
 
-" Language
-NeoBundle 'fatih/vim-go'
-NeoBundle 'davidhalter/jedi-vim'
-NeoBundle 'chase/vim-ansible-yaml'
+" Golang
+Plug 'fatih/vim-go'
+
+" Python
+Plug 'davidhalter/jedi-vim'
+
+" Ruby
+Plug 'tpope/vim-rails'
+
+" Javascript
+Plug 'pangloss/vim-javascript'
+Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
+"Plug 'carlitux/deoplete-ternjs'
+"Plug 'mxw/vim-jsx'
 
 " Utility
-NeoBundle 'airblade/vim-gitgutter'
-NeoBundle 'ctrlpvim/ctrlp.vim'
-NeoBundle 'majutsushi/tagbar'
-NeoBundle 'scrooloose/syntastic'
-NeoBundle 'scrooloose/nerdcommenter'
-NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-surround'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'majutsushi/tagbar'
+Plug 'scrooloose/syntastic'
+Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdtree'
+Plug 'tpope/vim-fugitive'
+Plug 'lfv89/vim-interestingwords'
 
-" Autocomplete
-NeoBundle 'Shougo/deoplete.nvim'
-NeoBundle 'zchee/deoplete-go'
-
-call neobundle#end()
+call plug#end()
 
 filetype plugin indent on
-
-NeoBundleCheck
 
 " BASE
 
 syntax on
 set encoding=utf-8
-set background=light
+set background=dark
+
+let base16colorspace=256
+"let g:hybrid_custom_term_colors = 1
+"let g:hybrid_reduced_contrast = 1 " Remove this line if using the default palette.
+
+set t_Co=256
 colorscheme solarized
+"colorscheme base16-ocean
+"colorscheme hybrid
+"colorscheme material-theme
+"colorscheme gruvbox
+"colorscheme OceanicNext
 
 let mapleader = ","
 
@@ -61,6 +82,9 @@ nnoremap <C-H> <C-W><C-H>
 " Jump around buffers quickly
 nnoremap <leader>b :buffers<CR>:buffer<space>
 
+" Async GoBuild
+nnoremap <leader>gb :GoBuild<CR>
+
 " Append closing braces
 inoremap {      {}<Left>
 inoremap {<CR>  {<CR>}<Esc>O
@@ -72,10 +96,11 @@ set number
 set ruler
 set nowrap
 
-" Indent and tabs
-set autoindent
-set copyindent
+" Tabs
+set tabstop=4
+set shiftwidth=4
 set expandtab
+autocmd Filetype javascript setlocal ts=2 sw=2
 
 " Making search a bit more sensible
 set ignorecase
@@ -117,6 +142,9 @@ nnoremap <leader>\ :NERDTreeToggle<CR>
 let g:airline_powerline_fonts = 1
 let g:airline_section_y = '%{strftime("%c")}'
 let g:airline#extensions#syntastic#enabled = 1
+let g:airline_left_sep=''
+let g:airline_right_sep=''
+let g:airline_theme='base16'
 
 " Syntastic
 set statusline+=%#warningmsg#
@@ -136,17 +164,27 @@ let g:syntastic_mode_map = { 'mode': 'active' }
 " Bit of a hack for syntastic to understand vim-go GOPATHs
 au FileType go let $GOPATH = go#path#Detect()
 
-" Vim-Go
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_structs = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_build_constraints = 1
-let g:go_fmt_command = "goimports"
-
 " TagBar
 nnoremap <leader>r :TagbarToggle<CR>
 
 " Deoplete & Deoplete-go
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#sources#go#align_class = 1
+
+" Javascript
+let g:jsx_ext_required = 0
+let g:syntastic_javascript_checkers = ['eslint']
+let g:javascript_plugin_jsdoc = 1
+
+" Tern
+let g:tern_map_keys = 1
+let g:tern_show_argument_hints = 'on_move'
+let g:tern_show_signature_in_pum = 1
+
+" Go
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
+let g:go_fmt_command = "goimports"
