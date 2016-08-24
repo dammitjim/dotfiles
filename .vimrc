@@ -32,6 +32,7 @@ Plug 'tpope/vim-rails'
 " Javascript
 Plug 'pangloss/vim-javascript'
 Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
+Plug 'mxw/vim-jsx'
 "Plug 'carlitux/deoplete-ternjs'
 "Plug 'mxw/vim-jsx'
 
@@ -175,6 +176,9 @@ let g:deoplete#sources#go#align_class = 1
 let g:jsx_ext_required = 0
 let g:syntastic_javascript_checkers = ['eslint']
 let g:javascript_plugin_jsdoc = 1
+
+" SASS
+let g:syntastic_scss_checkers = ['scss_lint']
 
 " Tern
 let g:tern_map_keys = 1
