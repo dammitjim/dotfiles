@@ -9,7 +9,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-sensible'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'Shougo/deoplete.nvim'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'zchee/deoplete-go'
 
 " Themes
@@ -19,12 +19,14 @@ Plug 'morhetz/gruvbox'
 Plug 'mhartington/oceanic-next'
 Plug 'altercation/vim-colors-solarized'
 Plug 'chriskempson/base16-vim'
+Plug 'whatyouhide/vim-gotham'
 
 " Golang
 Plug 'fatih/vim-go'
 
 " Python
 Plug 'davidhalter/jedi-vim'
+Plug 'zchee/deoplete-jedi'
 
 " Ruby
 Plug 'tpope/vim-rails'
@@ -33,8 +35,6 @@ Plug 'tpope/vim-rails'
 Plug 'pangloss/vim-javascript'
 Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
 Plug 'mxw/vim-jsx'
-"Plug 'carlitux/deoplete-ternjs'
-"Plug 'mxw/vim-jsx'
 
 " Utility
 Plug 'airblade/vim-gitgutter'
@@ -60,14 +60,20 @@ set background=dark
 let base16colorspace=256
 "let g:hybrid_custom_term_colors = 1
 "let g:hybrid_reduced_contrast = 1 " Remove this line if using the default palette.
+if (has("termguicolors"))
+    "set termguicolors
+endif
+
 
 set t_Co=256
 colorscheme solarized
 "colorscheme base16-ocean
+"colorscheme base16-default
 "colorscheme hybrid
 "colorscheme material-theme
 "colorscheme gruvbox
 "colorscheme OceanicNext
+"colorscheme gotham
 
 let mapleader = ","
 
@@ -135,7 +141,7 @@ set so=7
 nnoremap <leader>p :CtrlP<CR>
 
 " NERDTree
-let NERDTreeIgnore=['\~$', '\.swp$', '\.DS_Store$', '\.\.$', '\.$', '\~$']
+let NERDTreeIgnore=['\~$', '\.swp$', '\.DS_Store$', '\.\.$', '\.$', '\~$', '\.pyc$']
 let NerdTreeMinimalUi=1
 let NERDTreeShowHidden=1
 
@@ -181,6 +187,9 @@ let g:javascript_plugin_jsdoc = 1
 
 " SASS
 let g:syntastic_scss_checkers = ['scss_lint']
+
+" Python
+let g:syntastic_python_checkers = ['flake8']
 
 " Tern
 let g:tern_map_keys = 1
