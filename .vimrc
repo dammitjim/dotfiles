@@ -36,6 +36,13 @@ Plug 'pangloss/vim-javascript'
 Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
 Plug 'mxw/vim-jsx'
 
+" Typescript
+Plug 'leafgarland/typescript-vim'
+Plug 'ianks/vim-tsx'
+Plug 'Quramy/tsuquyomi'
+Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+Plug 'mhartington/deoplete-typescript'
+
 " Utility
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-surround'
@@ -203,3 +210,6 @@ let g:go_highlight_structs = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 let g:go_fmt_command = "goimports"
+
+" Typescript
+autocmd BufNewFile,BufRead *.tsx set filetype=typescript.tsx
