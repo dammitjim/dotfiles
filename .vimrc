@@ -53,6 +53,8 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-fugitive'
 Plug 'lfv89/vim-interestingwords'
+Plug 'AndrewRadev/splitjoin.vim'
+Plug 'SirVer/ultisnips'
 
 call plug#end()
 
@@ -96,16 +98,12 @@ set splitright
 set splitbelow
 
 " Jump around buffers quickly
-nnoremap <leader>b :buffers<CR>:buffer<space>
+nnoremap <leader>B :buffers<CR>:buffer<space>
 
-" Async GoBuild
-nnoremap <leader>gb :GoBuild<CR>
-
-" Append closing braces
-inoremap {      {}<Left>
-inoremap {<CR>  {<CR>}<Esc>O
-inoremap {{     {
-inoremap {}     {}
+" Quickfix navigation
+map <C-n> :cnext<CR>
+map <C-m> :cprevious<CR>
+nnoremap <leader>a :cclose<CR>
 
 " Standard stuff
 set number
@@ -146,6 +144,7 @@ set so=7
 
 " Ctrlp
 nnoremap <leader>p :CtrlP<CR>
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 
 " NERDTree
 let NERDTreeIgnore=['\~$', '\.swp$', '\.DS_Store$', '\.\.$', '\.$', '\~$', '\.pyc$']
@@ -204,12 +203,47 @@ let g:tern_show_argument_hints = 'on_move'
 let g:tern_show_signature_in_pum = 1
 
 " Go
+" Syntax highlighting
+let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
+let g:go_highlight_extra_types = 1
+
+" Run goimports
 let g:go_fmt_command = "goimports"
+
+" Run linter on save
+let g:go_metalinter_autosave = 1
+
+" Only use quickfix
+let g:go_list_type = "quickfix"
+
+" Update status line with type info
+let g:go_auto_type_info = 1
+set updatetime=100
+
+autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4 
+
+autocmd FileType go nmap <leader>t  <Plug>(go-test)
+autocmd FileType go nmap <Leader>c <Plug>(go-coverage-toggle)
+autocmd FileType go nmap <leader>gd  :GoDeclsDir<CR>
+autocmd FileType go nmap <leader>ga  :GoAlternate<CR>
+
+" run :GoBuild or :GoTestCompile based on the go file
+function! s:build_go_files()
+  let l:file = expand('%')
+  if l:file =~# '^\f\+_test\.go$'
+    call go#cmd#Test(0, 1)
+  elseif l:file =~# '^\f\+\.go$'
+    call go#cmd#Build(0)
+  endif
+endfunction
+
+autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
 
 " Typescript
 autocmd BufNewFile,BufRead *.tsx set filetype=typescript.tsx
