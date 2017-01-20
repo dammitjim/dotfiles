@@ -11,6 +11,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'zchee/deoplete-go'
+Plug 'easymotion/vim-easymotion'
 
 " Themes
 Plug 'w0ng/vim-hybrid'
@@ -41,7 +42,7 @@ Plug 'leafgarland/typescript-vim'
 Plug 'ianks/vim-tsx'
 Plug 'Quramy/tsuquyomi'
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
-Plug 'mhartington/deoplete-typescript'
+Plug 'mhartington/nvim-typescript'
 
 " Utility
 Plug 'airblade/vim-gitgutter'
@@ -55,6 +56,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'lfv89/vim-interestingwords'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'SirVer/ultisnips'
+Plug 'vim-scripts/BufOnly.vim'
+Plug 'vim-scripts/indentpython.vim'
 
 call plug#end()
 
@@ -84,7 +87,7 @@ colorscheme solarized
 "colorscheme OceanicNext
 "colorscheme gotham
 
-let mapleader = ","
+let mapleader = "\<Space>"
 
 " Toggle light/dark background
 map <Leader>bg :let &background = ( &background == "dark"? "light" : "dark" )<CR>
@@ -94,11 +97,24 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
+
+" Navigating split windows
+nnoremap <leader>wj <C-W><C-J>
+nnoremap <leader>wk <C-W><C-K>
+nnoremap <leader>wl <C-W><C-L>
+nnoremap <leader>wh <C-W><C-H>
+
+" Splitting windows
+nnoremap <leader>wv :vsp<CR>
+nnoremap <leader>ws :spl<CR>
+
+" List open buffers
+nnoremap <leader>l :ls<CR>:b
+" Close all buffers except this one
+nnoremap <leader>B :BufOnly<CR>
+
 set splitright
 set splitbelow
-
-" Jump around buffers quickly
-nnoremap <leader>B :buffers<CR>:buffer<space>
 
 " Quickfix navigation
 map <C-n> :cnext<CR>
@@ -112,8 +128,10 @@ set nowrap
 
 " Tabs
 set tabstop=4
+set softtabstop=4
 set shiftwidth=4
 set expandtab
+set smartindent
 autocmd Filetype javascript setlocal ts=2 sw=2
 
 " Making search a bit more sensible
@@ -160,6 +178,18 @@ let g:airline#extensions#syntastic#enabled = 1
 let g:airline_left_sep=''
 let g:airline_right_sep=''
 let g:airline_theme='base16'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#buffer_idx_mode = 1
+let g:airline#extensions#tabline#show_close_button = 1
+nmap <leader>1 <Plug>AirlineSelectTab1
+nmap <leader>2 <Plug>AirlineSelectTab2
+nmap <leader>3 <Plug>AirlineSelectTab3
+nmap <leader>4 <Plug>AirlineSelectTab4
+nmap <leader>5 <Plug>AirlineSelectTab5
+nmap <leader>6 <Plug>AirlineSelectTab6
+nmap <leader>7 <Plug>AirlineSelectTab7
+nmap <leader>8 <Plug>AirlineSelectTab8
+nmap <leader>9 <Plug>AirlineSelectTab9
 
 " Syntastic
 set statusline+=%#warningmsg#
@@ -180,7 +210,7 @@ let g:syntastic_mode_map = { 'mode': 'active' }
 au FileType go let $GOPATH = go#path#Detect()
 
 " TagBar
-nnoremap <leader>r :TagbarToggle<CR>
+nnoremap <leader>; :TagbarToggle<CR>
 
 " Deoplete & Deoplete-go
 let g:deoplete#enable_at_startup = 1
@@ -219,19 +249,17 @@ let g:go_fmt_command = "goimports"
 " Run linter on save
 let g:go_metalinter_autosave = 1
 
-" Only use quickfix
-let g:go_list_type = "quickfix"
-
 " Update status line with type info
 let g:go_auto_type_info = 1
 set updatetime=100
 
 autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4 
 
-autocmd FileType go nmap <leader>t  <Plug>(go-test)
 autocmd FileType go nmap <Leader>c <Plug>(go-coverage-toggle)
+autocmd FileType go nmap <leader>d  :GoDef<CR>
 autocmd FileType go nmap <leader>gd  :GoDeclsDir<CR>
 autocmd FileType go nmap <leader>ga  :GoAlternate<CR>
+autocmd FileType go nmap <leader>t   :GoTest<CR>
 
 " run :GoBuild or :GoTestCompile based on the go file
 function! s:build_go_files()
@@ -247,3 +275,4 @@ autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
 
 " Typescript
 autocmd BufNewFile,BufRead *.tsx set filetype=typescript.tsx
+
