@@ -14,16 +14,15 @@ else
     print "ALERT!!! missing ~/.path file"
 fi
 
-if [ -f ~/.secrets ]; then
-    source ~/.secrets
+if [ -f ~/.aliases ]; then
+    source ~/.aliases
 else
-    print "ALERT!!! missing ~/.secrets file"
+    print "ALERT!!! missing ~/.aliases file"
 fi
 
-export GOPATH=$HOME/Developer/go
-export GOROOT=/usr/local/opt/go/libexec
-export PATH=$PATH:$GOPATH/bin
-export PATH=$PATH:$GOROOT/bin
+if [ -f ~/.secrets ]; then
+    source ~/.secrets
+fi
 
 source $ZSH/oh-my-zsh.sh
 
