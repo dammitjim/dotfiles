@@ -4,7 +4,7 @@ export ZSH=/Users/James/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 ZSH_THEME="steeef-redux"
 
-plugins=(git)
+plugins=(git extract z)
 
 # User configuration
 
