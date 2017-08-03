@@ -14,29 +14,20 @@ Plug 'zchee/deoplete-go'
 Plug 'easymotion/vim-easymotion'
 
 " Themes
-Plug 'w0ng/vim-hybrid'
-Plug 'morhetz/gruvbox'
-Plug 'mhartington/oceanic-next'
 Plug 'altercation/vim-colors-solarized'
-Plug 'chriskempson/base16-vim'
-Plug 'dracula/vim'
 
 " Golang
 Plug 'fatih/vim-go'
 
 " Python
-Plug 'davidhalter/jedi-vim'
-Plug 'zchee/deoplete-jedi'
 
-" Ruby
-Plug 'tpope/vim-rails'
+Plug 'python-mode/python-mode'
 
 " Javascript
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 
 " Elixir
-
 Plug 'elixir-lang/vim-elixir'
 
 " Utility
@@ -48,10 +39,6 @@ Plug 'scrooloose/syntastic'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-fugitive'
-Plug 'AndrewRadev/splitjoin.vim'
-Plug 'SirVer/ultisnips'
-Plug 'vim-scripts/BufOnly.vim'
-Plug 'vim-scripts/indentpython.vim'
 
 call plug#end()
 
@@ -63,27 +50,10 @@ syntax on
 set encoding=utf-8
 set background=dark
 
-"let base16colorspace=256
-"let g:hybrid_custom_term_colors = 1
-"let g:hybrid_reduced_contrast = 1 " Remove this line if using the default palette.
-if (has("termguicolors"))
-    "set termguicolors
-endif
-
-
 set t_Co=256
 colorscheme solarized
-"colorscheme dracula
-"colorscheme base16-ocean
-"colorscheme base16-default
-"colorscheme hybrid
-"colorscheme material-theme
-"colorscheme gruvbox
-"colorscheme OceanicNext
-"colorscheme gotham
-"colorscheme nord
 
-let mapleader = ","
+let mapleader = "\<Space>"
 
 " Toggle light/dark background
 map <Leader>bg :let &background = ( &background == "dark"? "light" : "dark" )<CR>
@@ -93,12 +63,6 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
-
-" Navigating split windows
-nnoremap <leader>wj <C-W><C-J>
-nnoremap <leader>wk <C-W><C-K>
-nnoremap <leader>wl <C-W><C-L>
-nnoremap <leader>wh <C-W><C-H>
 
 " Splitting windows
 nnoremap <leader>wv :vsp<CR>
@@ -212,11 +176,6 @@ let g:syntastic_scss_checkers = ['scss_lint']
 " Python
 let g:syntastic_python_checkers = ['flake8']
 
-" Tern
-let g:tern_map_keys = 1
-let g:tern_show_argument_hints = 'on_move'
-let g:tern_show_signature_in_pum = 1
-
 " Go
 " Syntax highlighting
 let g:go_highlight_types = 1
@@ -261,3 +220,8 @@ autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
 " Typescript
 autocmd BufNewFile,BufRead *.tsx set filetype=typescript.tsx
 
+" Python
+
+let python_highlight_all = 1
+set nofoldenable
+let g:pymode_options_max_line_length = 120
