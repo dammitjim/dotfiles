@@ -1,6 +1,0 @@
-alias gb=$GOPATH/bin/gb
-
-alias gba="sh ~/Developer/scripts/gba.sh"
-alias goa="sh ~/Developer/scripts/goa.sh"
-alias gbv="sh ~/Developer/scripts/gbv.sh"
-alias gov="sh ~/Developer/scripts/gov.sh"
