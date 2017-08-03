@@ -15,12 +15,11 @@ Plug 'easymotion/vim-easymotion'
 
 " Themes
 Plug 'w0ng/vim-hybrid'
-Plug 'jdkanani/vim-material-theme'
 Plug 'morhetz/gruvbox'
 Plug 'mhartington/oceanic-next'
 Plug 'altercation/vim-colors-solarized'
 Plug 'chriskempson/base16-vim'
-Plug 'whatyouhide/vim-gotham'
+Plug 'dracula/vim'
 
 " Golang
 Plug 'fatih/vim-go'
@@ -34,15 +33,11 @@ Plug 'tpope/vim-rails'
 
 " Javascript
 Plug 'pangloss/vim-javascript'
-Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
 Plug 'mxw/vim-jsx'
 
-" Typescript
-Plug 'leafgarland/typescript-vim'
-Plug 'ianks/vim-tsx'
-Plug 'Quramy/tsuquyomi'
-Plug 'Shougo/vimproc.vim', {'do' : 'make'}
-Plug 'mhartington/nvim-typescript'
+" Elixir
+
+Plug 'elixir-lang/vim-elixir'
 
 " Utility
 Plug 'airblade/vim-gitgutter'
@@ -53,7 +48,6 @@ Plug 'scrooloose/syntastic'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-fugitive'
-Plug 'lfv89/vim-interestingwords'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'SirVer/ultisnips'
 Plug 'vim-scripts/BufOnly.vim'
@@ -69,7 +63,7 @@ syntax on
 set encoding=utf-8
 set background=dark
 
-let base16colorspace=256
+"let base16colorspace=256
 "let g:hybrid_custom_term_colors = 1
 "let g:hybrid_reduced_contrast = 1 " Remove this line if using the default palette.
 if (has("termguicolors"))
@@ -79,6 +73,7 @@ endif
 
 set t_Co=256
 colorscheme solarized
+"colorscheme dracula
 "colorscheme base16-ocean
 "colorscheme base16-default
 "colorscheme hybrid
@@ -86,8 +81,9 @@ colorscheme solarized
 "colorscheme gruvbox
 "colorscheme OceanicNext
 "colorscheme gotham
+"colorscheme nord
 
-let mapleader = "\<Space>"
+let mapleader = ","
 
 " Toggle light/dark background
 map <Leader>bg :let &background = ( &background == "dark"? "light" : "dark" )<CR>
@@ -158,6 +154,8 @@ set autoread
 " Scroll offset
 set so=7
 
+set mouse=a
+
 " PLUGIN CONFIG
 
 " Ctrlp
@@ -177,19 +175,6 @@ let g:airline_section_y = '%{strftime("%c")}'
 let g:airline#extensions#syntastic#enabled = 1
 let g:airline_left_sep=''
 let g:airline_right_sep=''
-let g:airline_theme='base16'
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#buffer_idx_mode = 1
-let g:airline#extensions#tabline#show_close_button = 1
-nmap <leader>1 <Plug>AirlineSelectTab1
-nmap <leader>2 <Plug>AirlineSelectTab2
-nmap <leader>3 <Plug>AirlineSelectTab3
-nmap <leader>4 <Plug>AirlineSelectTab4
-nmap <leader>5 <Plug>AirlineSelectTab5
-nmap <leader>6 <Plug>AirlineSelectTab6
-nmap <leader>7 <Plug>AirlineSelectTab7
-nmap <leader>8 <Plug>AirlineSelectTab8
-nmap <leader>9 <Plug>AirlineSelectTab9
 
 " Syntastic
 set statusline+=%#warningmsg#
