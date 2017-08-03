@@ -14,6 +14,12 @@ else
     print "ALERT!!! missing ~/.path file"
 fi
 
+if [ -f ~/.secrets ]; then
+    source ~/.secrets
+else
+    print "ALERT!!! missing ~/.secrets file"
+fi
+
 export GOPATH=$HOME/Developer/go
 export GOROOT=/usr/local/opt/go/libexec
 export PATH=$PATH:$GOPATH/bin
