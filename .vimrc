@@ -9,8 +9,6 @@ call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-sensible'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'zchee/deoplete-go'
 Plug 'easymotion/vim-easymotion'
 
 " Themes
@@ -20,15 +18,7 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'fatih/vim-go'
 
 " Python
-
 Plug 'python-mode/python-mode'
-
-" Javascript
-Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'
-
-" Elixir
-Plug 'elixir-lang/vim-elixir'
 
 " Utility
 Plug 'airblade/vim-gitgutter'
@@ -77,9 +67,13 @@ set splitright
 set splitbelow
 
 " Quickfix navigation
-map <C-n> :cnext<CR>
-map <C-m> :cprevious<CR>
-nnoremap <leader>a :cclose<CR>
+nnoremap <leader>qfc :cclose<CR>
+nnoremap <leader>qfn :cnext<CR>
+nnoremap <leader>qfp :cprevious<CR>
+
+" Location list navigation
+nnoremap <leader>lln :lne<CR>
+nnoremap <leader>llp :lpr<CR>
 
 " Standard stuff
 set number
@@ -151,9 +145,8 @@ let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 
 let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
-let g:syntastic_mode_map = { 'mode': 'active' }
-" Enable this if vim starts lagging on save
-" let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
+" dont use for python as we use python-mode
+let g:syntastic_mode_map = { 'passive_filetypes': ['python'] }
 
 " Bit of a hack for syntastic to understand vim-go GOPATHs
 au FileType go let $GOPATH = go#path#Detect()
@@ -200,7 +193,6 @@ set updatetime=100
 autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4 
 
 autocmd FileType go nmap <Leader>c <Plug>(go-coverage-toggle)
-autocmd FileType go nmap <leader>d  :GoDef<CR>
 autocmd FileType go nmap <leader>gd  :GoDeclsDir<CR>
 autocmd FileType go nmap <leader>ga  :GoAlternate<CR>
 autocmd FileType go nmap <leader>t   :GoTest<CR>
@@ -215,13 +207,21 @@ function! s:build_go_files()
   endif
 endfunction
 
-autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
-
-" Typescript
-autocmd BufNewFile,BufRead *.tsx set filetype=typescript.tsx
+" autocmd FileType go nmap <leader>c :<C-u>call <SID>build_go_files()<CR>
 
 " Python
-
 let python_highlight_all = 1
 set nofoldenable
 let g:pymode_options_max_line_length = 120
+let g:pymode_lint = 1
+
+let g:pymode_rope_goto_definition_bind = '<leader>b'
+let g:pymode_rope_show_doc_bind = '<leader>d'
+autocmd FileType go nmap <leader>b  :GoDef<CR>
+
+nnoremap <leader>gs :Gstatus<CR>
+nnoremap <leader>gd :Gdiff<CR>
+nnoremap <leader>gr :Gread<CR>
+nnoremap <leader>gl :silent! Glog<CR>:bot copen<CR>
+nnoremap <leader>gb :Git branch<Space>
+nnoremap <leader>go :Git checkout<Space>
