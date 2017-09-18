@@ -59,7 +59,7 @@ nnoremap <leader>wv :vsp<CR>
 nnoremap <leader>ws :spl<CR>
 
 " List open buffers
-nnoremap <leader>l :ls<CR>:b
+nnoremap <leader>bl :ls<CR>:b
 " Close all buffers except this one
 nnoremap <leader>B :BufOnly<CR>
 
@@ -210,7 +210,7 @@ endfunction
 " autocmd FileType go nmap <leader>c :<C-u>call <SID>build_go_files()<CR>
 
 " Python
-let python_highlight_all = 1
+let g:pymode_syntax_all = 1
 set nofoldenable
 let g:pymode_options_max_line_length = 120
 let g:pymode_lint = 1

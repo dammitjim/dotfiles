@@ -32,3 +32,6 @@ export TERM=xterm-256color
 export WORKON_HOME=$HOME/.virtualenvs
 source /usr/local/bin/virtualenvwrapper.sh
 
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+
