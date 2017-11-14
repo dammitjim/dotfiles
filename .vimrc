@@ -11,8 +11,13 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'easymotion/vim-easymotion'
 
+" Fuzzy finding
+Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf.vim'
+
 " Themes
 Plug 'altercation/vim-colors-solarized'
+Plug 'arcticicestudio/nord-vim'
 
 " Golang
 Plug 'fatih/vim-go'
@@ -20,15 +25,20 @@ Plug 'fatih/vim-go'
 " Python
 Plug 'python-mode/python-mode'
 
+" Ansible
+Plug 'pearofducks/ansible-vim'
+
 " Utility
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-surround'
-Plug 'ctrlpvim/ctrlp.vim'
 Plug 'majutsushi/tagbar'
 Plug 'scrooloose/syntastic'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-fugitive'
+
+" Kill a buffer without killing vim
+Plug 'qpkorr/vim-bufkill'
 
 call plug#end()
 
@@ -41,7 +51,8 @@ set encoding=utf-8
 set background=dark
 
 set t_Co=256
-colorscheme solarized
+"colorscheme solarized
+colorscheme nord
 
 let mapleader = "\<Space>"
 
@@ -74,6 +85,11 @@ nnoremap <leader>qfp :cprevious<CR>
 " Location list navigation
 nnoremap <leader>lln :lne<CR>
 nnoremap <leader>llp :lpr<CR>
+
+" FZF.vim binds
+nmap ; :Buffers<CR>
+nmap <Leader>t :Files<CR>
+nmap <Leader>r :Tags<CR>
 
 " Standard stuff
 set number
@@ -150,9 +166,6 @@ let g:syntastic_mode_map = { 'passive_filetypes': ['python'] }
 
 " Bit of a hack for syntastic to understand vim-go GOPATHs
 au FileType go let $GOPATH = go#path#Detect()
-
-" TagBar
-nnoremap <leader>; :TagbarToggle<CR>
 
 " Deoplete & Deoplete-go
 let g:deoplete#enable_at_startup = 1
