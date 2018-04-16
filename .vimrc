@@ -51,8 +51,8 @@ set encoding=utf-8
 set background=dark
 
 set t_Co=256
-"colorscheme solarized
-colorscheme nord
+colorscheme solarized
+"colorscheme nord
 
 let mapleader = "\<Space>"
 
