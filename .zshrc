@@ -2,7 +2,10 @@
 export ZSH=/Users/$(whoami)/.oh-my-zsh
 
 # Look in ~/.oh-my-zsh/themes/
-ZSH_THEME="steeef-redux"
+ZSH_THEME="spaceship"
+
+autoload -U promptinit; promptinit
+prompt pure
 
 plugins=(git extract z)
 
