@@ -9,6 +9,13 @@ prompt pure
 
 plugins=(git extract z)
 
+# oh my zsh config
+source $ZSH/oh-my-zsh.sh
+
+# colours config
+export TERM=xterm-256color
+[ -n "$TMUX"  ] && export TERM=screen-256color
+
 # User configuration
 
 if [ -f ~/.path ]; then
@@ -31,13 +38,5 @@ if [ -f ~/.exports ]; then
     source ~/.exports
 fi
 
-# oh my zsh config
-source $ZSH/oh-my-zsh.sh
-
-# colours config
-export TERM=xterm-256color
-[ -n "$TMUX"  ] && export TERM=screen-256color
-
 eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
 
