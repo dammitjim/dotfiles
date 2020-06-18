@@ -1,12 +1,6 @@
-# Openssl
-export PATH=/usr/local/opt/openssl/bin:$PATH
-
-# Go
-export GOPATH=$HOME/Developer/go
-
-export PATH=$PATH:$GOPATH/bin
-export PATH=$PATH:$GOROOT/bin
-
-# shitty workaround for https://github.com/Homebrew/homebrew-core/issues/15746
-export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python2
-export PATH=/opt/brew/opt/python/libexec/bin:$PATH
+export PATH=$PATH:/usr/local/opt/python@2/libexec
+export PATH="/usr/local/sbin:$PATH"
+export PATH="$HOME/.poetry/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.emacs.d/bin:$PATH"
+export PATH="$HOME/.cargo/bin:$PATH"
