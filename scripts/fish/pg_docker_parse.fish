@@ -11,5 +11,7 @@ function pg_docker_parse
     set -l user (
         yq e '.services[] | select(.image == "postgres*").environment | .POSTGRES_USER // "postgres"' docker-compose.yml
     )
+    # these values are intended to be captured as a list and then
+    # expanded back out into appropriate variables
     echo $database\n$port\n$password\n$user
 end
