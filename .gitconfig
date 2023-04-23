@@ -1,8 +1,8 @@
 # This is Git's per-user configuration file.
 [user]
-	name = Jim Hill
-	email = jim@tightenupthe.tech
-	signingkey = 1B3C2A1E5B0A58F8
+	name = Jim Woods
+	email = jim@tutt.dev
+	signingkey = E040A04B3C1CD0EA
 [commit]
 	gpgsign = true
 [gpg]
