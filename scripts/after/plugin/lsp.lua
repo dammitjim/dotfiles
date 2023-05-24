@@ -46,12 +46,13 @@ lsp.on_attach(function(client, bufnr)
 end)
 
 local lspconfig = require('lspconfig')
+local have_vue = is_npm_package_installed 'vue' or is_npm_package_installed 'nuxt'
+
 lspconfig.volar.setup {
-  filetypes = is_npm_package_installed 'vue' and { 'vue', 'typescript', 'javascript' } or { 'vue' },
+  filetypes = have_vue and { 'vue', 'typescript', 'javascript' } or { 'vue' },
 }
 
 -- disable tsserver if we have vue as it conflicts with volar
-local have_vue = is_npm_package_installed 'vue'
 if have_vue then
     lsp.skip_server_setup({'tsserver'})
 end

@@ -65,4 +65,22 @@ return require('packer').startup(function(use)
     }
 
     use("nvim-lua/plenary.nvim")
+
+    use {
+        "nvim-neotest/neotest",
+        requires = {
+            "nvim-lua/plenary.nvim",
+            "nvim-treesitter/nvim-treesitter",
+            "antoinemadec/FixCursorHold.nvim",
+            "haydenmeade/neotest-jest",
+            "marilari88/neotest-vitest",
+        },
+        config = function()
+            require('neotest').setup({
+                adapters = {
+                    require('neotest-vitest')
+                }
+            })
+        end
+    }
 end)

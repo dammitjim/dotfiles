@@ -14,3 +14,6 @@ vim.keymap.set("n", "<C-H>", "<C-W><C-H>")
 vim.keymap.set("n", "<leader>ff", vim.lsp.buf.format)
 
 vim.keymap.set("n", "<leader>b", "<C-^>")
+vim.keymap.set("n", "<leader>ss", ":vs<CR>")
+vim.keymap.set("n", "<leader>sb", ":sp<CR>")
+vim.keymap.set("n", "<leader>sr", "<C-W>=")
