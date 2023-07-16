@@ -74,11 +74,13 @@ return require('packer').startup(function(use)
             "antoinemadec/FixCursorHold.nvim",
             "haydenmeade/neotest-jest",
             "marilari88/neotest-vitest",
+            "nvim-neotest/neotest-python",
         },
         config = function()
             require('neotest').setup({
                 adapters = {
-                    require('neotest-vitest')
+                    require('neotest-vitest'),
+                    require("neotest-python")
                 }
             })
         end
