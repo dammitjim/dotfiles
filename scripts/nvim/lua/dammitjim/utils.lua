@@ -41,3 +41,4 @@ function M.is_npm_package_installed(package)
 end
 
 return M
+

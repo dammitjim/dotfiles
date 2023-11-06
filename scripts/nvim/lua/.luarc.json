@@ -1,0 +1,29 @@
+{
+    "workspace.library": [
+        "/Users/jim/.local/share/nvim/lazy/neodev.nvim/types/stable",
+        "/opt/homebrew/Cellar/neovim/0.9.4/share/nvim/runtime/lua",
+        "/Users/jim/.local/share/nvim/lazy/telescope.nvim/lua",
+        "/Users/jim/.local/share/nvim/lazy/which-key.nvim/lua",
+        "/Users/jim/.local/share/nvim/lazy/catppuccin/lua",
+        "/Users/jim/.local/share/nvim/lazy/plenary.nvim/lua",
+        "/Users/jim/.local/share/nvim/lazy/lualine.nvim/lua",
+        "/Users/jim/.local/share/nvim/lazy/nvim-treesitter/lua",
+        "/Users/jim/.local/share/nvim/lazy/LuaSnip/lua",
+        "/Users/jim/.local/share/nvim/lazy/copilot.vim/lua",
+        "/Users/jim/.local/share/nvim/lazy/lazy.nvim/lua",
+        "/Users/jim/.local/share/nvim/lazy/mason.nvim/lua",
+        "/Users/jim/.local/share/nvim/lazy/trouble.nvim/lua",
+        "/Users/jim/.local/share/nvim/lazy/nvim-cmp/lua",
+        "/Users/jim/.local/share/nvim/lazy/cmp-nvim-lua/lua",
+        "/Users/jim/.local/share/nvim/lazy/cmp_luasnip/lua",
+        "/Users/jim/.local/share/nvim/lazy/mason-lspconfig.nvim/lua",
+        "/Users/jim/.local/share/nvim/lazy/cmp-nvim-lsp/lua",
+        "/Users/jim/.local/share/nvim/lazy/nvim-lspconfig/lua",
+        "/Users/jim/.local/share/nvim/lazy/nvim-tree.lua/lua",
+        "/Users/jim/.local/share/nvim/lazy/nvim-web-devicons/lua",
+        "/Users/jim/.local/share/nvim/lazy/neodev.nvim/lua",
+        "/opt/homebrew/Cellar/neovim/0.9.4/share/nvim/runtime",
+        "/Users/jim/.config/nvim/lua",
+        "${3rd}/luv/library"
+    ]
+}
