@@ -18,6 +18,12 @@ require("lazy").setup({
     "tpope/vim-sleuth",
     -- git
     "tpope/vim-fugitive",
+    -- comments
+    { 'numToStr/Comment.nvim', opts = {} },
+    -- undo tree (local file history)
+    "mbbill/undotree",
+    --marks management
+    "chentoast/marks.nvim",
     -- colorscheme
     { "catppuccin/nvim",      name = "catppuccin", priority = 1000 },
     -- directory explorer
